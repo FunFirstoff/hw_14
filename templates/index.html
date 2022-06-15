@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>HW14</title>
+    <style>
+        li {list-style-type: none;}
+   </style>
+</head>
+<body>
+<br/><hr/><br/>
+<form method="GET" action="/search/">
+    <input type="text" name="s" placeholder="Поиск по названию"/>
+    <input type="submit" value="Поиск"/>
+</form>
+<br/><hr/><br/>
+<form method="GET" action="/search-by-years/">
+    <select name="y1">
+        {% for year in years %}
+        <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+    <select name="y2">
+        {% for year in years %}
+        <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Поиск по диапазону лет выпуска">
+</form>
+<br/><hr/><br/>
+<p><a href = "/rating/children/">Для детей</a></p>
+<p><a href = "/rating/family/">Для семейного просмотра</a></p>
+<p><a href = "/rating/adult/">Для взрослых</a></p>
+<br/><hr/><br/>
+{% for genre in genres %}
+    <a href="/genre/{{ genre }}/">{{ genre }}</a>
+{% endfor %}
+<br/><hr/><br/>
+<form action="/search-actors/" method="GET">
+    <ul>
+        <li><input type="text" name="af" placeholder="Первый актер"></li>
+        <li><input type="text" name="as" placeholder="Второй актер"></li>
+        <li><input type="submit" value="Поиск по именам двух актеров"/></li>
+    </ul>
+</form>
+<br/><hr/><br/>
+<form action="/type-year-genre/" method="GET">
+    <ul>
+        <li>
+            <select name="t">
+                {% for type in types %}
+                    <option  value="{{ type }}">{{ type }}</option>
+                {% endfor %}
+            </select>
+        </li>
+        <li>
+            <select name="y">
+                {% for year in years %}
+                    <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select>
+        </li>
+        <li>
+            <select name="g">
+                {% for genre in genres %}
+                    <option value="{{ genre }}">{{ genre }}</option>
+                {% endfor %}
+            </select>
+        </li>
+        <li><input type="submit" value="Поиск по типу, году, жанру"/></li>
+    </ul>
+</form>
+<br/><hr/><br/>
+</body>
+</html>

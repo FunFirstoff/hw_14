@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>HW14</title>
+</head>
+<body>
+<a href = "/">На главную</a>
+<ul>
+    {% for movie in movies %}
+    <li><a href="/movie/{{ movie.show_id }}/">{{ movie.title }}</a>
+        <ul>
+        {% if movie.country != '' %}
+            <li>{{ movie.country }}</li>
+        {% endif %}
+
+        {% if movie.release_year != '' %}
+            <li>{{ movie.release_year }}</li>
+        {% endif %}
+
+        {% if movie.director != '' %}
+            <li>{{ movie.director }}</li>
+        {% endif %}
+        </ul></li>
+    {% endfor %}
+</ul>Страница {{p|int + 1}}
+{% if p|int != 0 %}
+    <form action="/search/" method="GET">
+    <input type="hidden" name="s" readonly value = "{{ s }}"/>
+    <input type="hidden" name="p" readonly value = "{{ p|int - 1 }}"/>
+    <input type="submit" value="Назад"/>
+</form>
+{% endif %}
+<form action="/search/" method="GET">
+    <input type="hidden" name="s" readonly value = "{{ s }}"/>
+    <input type="hidden" name="p" readonly value = "{{ p|int + 1 }}"/>
+    <input type="submit" value="Дальше"/>
+</form>
+
+</body>
+</html>
